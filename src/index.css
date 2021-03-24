@@ -168,14 +168,12 @@ aside {
 .proyectos {
 	margin-top: 10rem;
 }
-.listado-proyectos li {
-	margin-bottom: 2rem;
-}
-.listado-proyectos li a {
+.listado-proyectos li button {
 	font-size: 1.4rem;
 	color: var(--gris2);
 	line-height: 1.5;
 	font-weight: 300;
+	margin-top: 0;
 }
 .app-header {
 	display: flex;
