@@ -45,6 +45,7 @@ export const Login = () => {
 							placeholder='Tu password'
 							value={password}
 							onChange={handleInputChange}
+							autoComplete='off'
 						/>
 					</div>
 
