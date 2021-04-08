@@ -5,7 +5,13 @@ import { proyectoContext } from '../../context/proyectos/proyectoContext'
 export const NuevoProyecto = () => {
 	// consumir el context -- obtener el state del formulario
 	const state = useContext(proyectoContext)
-	const { formulario, mostrarFormulario } = state
+	const {
+		formulario,
+		errorFormulario,
+		mostrarFormulario,
+		agregarProyecto,
+		mostrarError,
+	} = state
 
 	const { values, handleInputChange, reset } = useForm({
 		nombre: '',
@@ -17,8 +23,13 @@ export const NuevoProyecto = () => {
 		e.preventDefault()
 
 		// validar el proyecto
+		if (nombre === '') {
+			mostrarError()
+			return
+		}
 
 		// agregar al state
+		agregarProyecto(values)
 
 		// reiniciar el form
 		reset()
@@ -55,6 +66,10 @@ export const NuevoProyecto = () => {
 						value='Agregar Proyecto'
 					/>
 				</form>
+			)}
+
+			{errorFormulario && (
+				<p className='mensaje error'>El nombre del proyecto es obligatorio.</p>
 			)}
 		</>
 	)
