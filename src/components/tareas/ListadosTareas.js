@@ -4,7 +4,7 @@ import { Tarea } from './Tarea'
 
 export const ListadosTareas = () => {
 	const state = useContext(proyectoContext)
-	const { proyecto } = state
+	const { proyecto, eliminarProyecto } = state
 
 	const tareasProyecto = [
 		{
@@ -30,7 +30,7 @@ export const ListadosTareas = () => {
 
 	return (
 		<>
-			<h2>Proyecto: {proyecto?.nombre}</h2>
+			<h2>Proyecto: {proyecto.nombre}</h2>
 
 			<ul className='listado-tareas'>
 				{tareasProyecto.length === 0 ? (
@@ -40,8 +40,12 @@ export const ListadosTareas = () => {
 				)}
 			</ul>
 
-			<button type='button' className='btn btn-eliminar'>
-				Eliminar Proyectos &times;
+			<button
+				type='button'
+				className='btn btn-eliminar'
+				onClick={() => eliminarProyecto(proyecto.id)}
+			>
+				Eliminar Proyecto &times;
 			</button>
 		</>
 	)

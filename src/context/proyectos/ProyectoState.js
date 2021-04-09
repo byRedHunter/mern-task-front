@@ -4,6 +4,7 @@ import React, { useReducer } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import {
 	AGREGAR_PROYECTO,
+	ELIMINAR_PROYECTO,
 	FORMULARIO_PROYECTO,
 	OBTENER_PROYECTOS,
 	PROYECTO_ACTUAL,
@@ -76,6 +77,14 @@ export const ProyectoState = (props) => {
 		})
 	}
 
+	// elimina un proyecto
+	const eliminarProyecto = (proyectoId) => {
+		dispatch({
+			type: ELIMINAR_PROYECTO,
+			payload: proyectoId,
+		})
+	}
+
 	return (
 		<proyectoContext.Provider
 			value={{
@@ -88,6 +97,7 @@ export const ProyectoState = (props) => {
 				agregarProyecto,
 				mostrarError,
 				proyectoActual,
+				eliminarProyecto,
 			}}
 		>
 			{props.children}

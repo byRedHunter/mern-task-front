@@ -13,7 +13,11 @@ export const ListadoProyectos = () => {
 
 	// revisamos si proyectos tiene contenido
 	if (proyectos.length === 0)
-		return <p className='mensaje info'>Aun no tienes proyectos.</p>
+		return (
+			<p className='mensaje info'>
+				Aun no tienes proyectos, comienza creando uno.
+			</p>
+		)
 
 	return (
 		<ul className='listado-proyectos'>
