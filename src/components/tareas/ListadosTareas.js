@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { proyectoContext } from '../../context/proyectos/proyectoContext'
 import { Tarea } from './Tarea'
 
 export const ListadosTareas = () => {
+	const state = useContext(proyectoContext)
+	const { proyecto } = state
+
 	const tareasProyecto = [
 		{
 			id: '96er4d524fssd',
@@ -20,9 +24,13 @@ export const ListadosTareas = () => {
 		},
 	]
 
+	// si no hay proyecto seleccionado
+	if (!proyecto)
+		return <div className='mensaje info'>Selecciona un proyecto</div>
+
 	return (
 		<>
-			<h2>Tienda virtual</h2>
+			<h2>Proyecto: {proyecto?.nombre}</h2>
 
 			<ul className='listado-tareas'>
 				{tareasProyecto.length === 0 ? (
