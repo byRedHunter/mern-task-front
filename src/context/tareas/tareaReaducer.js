@@ -13,7 +13,7 @@ export const tareaReducer = (state, action) => {
 		case AGREGAR_TAREA:
 			return {
 				...state,
-				tareas: [...state.tareas, action.payload],
+				tareas: [action.payload, ...state.tareas],
 			}
 
 		case ELIMINAR_TAREA:

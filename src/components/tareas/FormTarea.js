@@ -60,7 +60,7 @@ export const FormTarea = () => {
 				</div>
 
 				{errorForm && (
-					<div className='mensaje error'>
+					<div className='mensaje error animate__animated animate__bounceIn'>
 						Complete el campo para agregar su tarea.
 					</div>
 				)}

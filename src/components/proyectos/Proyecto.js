@@ -15,7 +15,7 @@ export const Proyecto = ({ proyecto }) => {
 	}
 
 	return (
-		<li>
+		<li className=' animate__animated animate__zoomIn'>
 			<button
 				type='button'
 				className='btn btn-block'

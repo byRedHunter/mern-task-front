@@ -47,7 +47,7 @@ export const NuevoProyecto = () => {
 
 			{formulario && (
 				<form
-					className='formulario-nuevo-proyecto'
+					className='formulario-nuevo-proyecto animate__animated animate__lightSpeedInLeft'
 					onSubmit={handleSubmit}
 					autoComplete='off'
 				>
@@ -69,7 +69,9 @@ export const NuevoProyecto = () => {
 			)}
 
 			{errorFormulario && (
-				<p className='mensaje error'>El nombre del proyecto es obligatorio.</p>
+				<p className='mensaje error animate__animated animate__bounceIn'>
+					El nombre del proyecto es obligatorio.
+				</p>
 			)}
 		</>
 	)

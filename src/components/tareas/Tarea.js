@@ -14,7 +14,7 @@ export const Tarea = ({ tarea }) => {
 	}
 
 	return (
-		<li className='tarea sombra'>
+		<li className='tarea sombra animate__animated animate__backInRight'>
 			<p> {tarea.nombre} </p>
 
 			<div className='estado'>
