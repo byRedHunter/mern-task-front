@@ -23,10 +23,6 @@ export const ProyectoState = (props) => {
 			id: '96460sgdghkl',
 			nombre: 'Diseño sitio web',
 		},
-		{
-			id: '9sdg6s4d8fdf',
-			nombre: 'MERN',
-		},
 	]
 
 	const initialState = {

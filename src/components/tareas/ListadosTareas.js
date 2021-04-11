@@ -1,28 +1,14 @@
 import React, { useContext } from 'react'
 import { proyectoContext } from '../../context/proyectos/proyectoContext'
+import { TareaContext } from '../../context/tareas/TareaContext'
 import { Tarea } from './Tarea'
 
 export const ListadosTareas = () => {
-	const state = useContext(proyectoContext)
-	const { proyecto, eliminarProyecto } = state
+	const stateProyecto = useContext(proyectoContext)
+	const { proyecto, eliminarProyecto } = stateProyecto
 
-	const tareasProyecto = [
-		{
-			id: '96er4d524fssd',
-			nombre: 'Elegir plataforma',
-			estado: true,
-		},
-		{
-			id: '96er6sfg54fssd',
-			nombre: 'Elegir colores',
-			estado: false,
-		},
-		{
-			id: 'sdg96d524fssd',
-			nombre: 'Elegir hosting',
-			estado: true,
-		},
-	]
+	const stateTareas = useContext(TareaContext)
+	const { tareasProyecto } = stateTareas
 
 	// si no hay proyecto seleccionado
 	if (!proyecto)
