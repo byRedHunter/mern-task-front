@@ -1,4 +1,4 @@
-import { TAREAS_PROYECTO } from '../../types'
+import { AGREGAR_TAREA, TAREAS_PROYECTO } from '../../types'
 
 export const tareaReducer = (state, action) => {
 	switch (action.type) {
@@ -8,6 +8,12 @@ export const tareaReducer = (state, action) => {
 				tareasProyecto: state.tareas.filter(
 					(tarea) => tarea.proyectoId === action.payload
 				),
+			}
+
+		case AGREGAR_TAREA:
+			return {
+				...state,
+				tareas: [...state.tareas, action.payload],
 			}
 
 		default:
