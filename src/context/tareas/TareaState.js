@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { AGREGAR_TAREA, TAREAS_PROYECTO } from '../../types'
+import { AGREGAR_TAREA, ELIMINAR_TAREA, TAREAS_PROYECTO } from '../../types'
 import { TareaContext } from './TareaContext'
 import { tareaReducer } from './tareaReaducer'
 
@@ -42,10 +42,18 @@ export const TareaState = ({ children }) => {
 	}
 
 	// agregar una tarea al proyecto seleccionado
-	const agregarTarea = (proyecto) => {
+	const agregarTarea = (tarea) => {
 		dispatch({
 			type: AGREGAR_TAREA,
-			payload: proyecto,
+			payload: tarea,
+		})
+	}
+
+	// eliminar na tarea
+	const eliminarTarea = (tareaId) => {
+		dispatch({
+			type: ELIMINAR_TAREA,
+			payload: tareaId,
 		})
 	}
 
@@ -56,6 +64,7 @@ export const TareaState = ({ children }) => {
 				tareasProyecto: state.tareasProyecto,
 				obtenerTareas,
 				agregarTarea,
+				eliminarTarea,
 			}}
 		>
 			{children}
