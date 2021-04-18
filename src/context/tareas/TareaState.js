@@ -1,8 +1,10 @@
 import React, { useReducer } from 'react'
 import {
+	ACTUALIZAR_TAREA,
 	AGREGAR_TAREA,
 	ELIMINAR_TAREA,
 	ESTADO_TAREA,
+	LIMPIAR_TAREA,
 	TAREAS_PROYECTO,
 	TAREA_ACTUAL,
 } from '../../types'
@@ -80,6 +82,21 @@ export const TareaState = ({ children }) => {
 		})
 	}
 
+	// edita o modifica una tarea
+	const actualizarTarea = (tarea) => {
+		dispatch({
+			type: ACTUALIZAR_TAREA,
+			payload: tarea,
+		})
+	}
+
+	// limpiar tarea seleccionada a editar
+	const limpiarTarea = () => {
+		dispatch({
+			type: LIMPIAR_TAREA,
+		})
+	}
+
 	return (
 		<TareaContext.Provider
 			value={{
@@ -91,6 +108,8 @@ export const TareaState = ({ children }) => {
 				eliminarTarea,
 				cambiarEstadoTarea,
 				guardarTareaActual,
+				actualizarTarea,
+				limpiarTarea,
 			}}
 		>
 			{children}

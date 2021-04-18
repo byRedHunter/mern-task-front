@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { proyectoContext } from '../../context/proyectos/proyectoContext'
 import { TareaContext } from '../../context/tareas/TareaContext'
@@ -10,10 +10,26 @@ export const FormTarea = () => {
 	const stateProyecto = useContext(proyectoContext)
 	const { proyecto } = stateProyecto
 	const stateTarea = useContext(TareaContext)
-	const { agregarTarea, obtenerTareas } = stateTarea
+	const {
+		agregarTarea,
+		obtenerTareas,
+		tareaSeleccionada,
+		actualizarTarea,
+		limpiarTarea,
+	} = stateTarea
 
 	const { values, handleInputChange, reset } = useForm({ nombre: '' })
 	const { nombre } = values
+
+	// effect que detecta si hay una tarea seleccionada
+	useEffect(() => {
+		if (tareaSeleccionada !== null) {
+			reset(tareaSeleccionada)
+		} else {
+			reset()
+		}
+		// eslint-disable-next-line
+	}, [tareaSeleccionada])
 
 	if (!proyecto) return null
 
@@ -26,13 +42,24 @@ export const FormTarea = () => {
 			return
 		}
 
-		setErrorForm(false)
-		values.proyectoId = proyecto.id
-		values.estado = false
-		values.id = uuidv4()
-		agregarTarea(values)
-		obtenerTareas(proyecto.id)
+		// revisa si es edicion o nueva tarea
+		if (tareaSeleccionada) {
+			// editar tarea
+			actualizarTarea(values)
+			// eliminamos tarea seleccionada
+			limpiarTarea()
+		} else {
+			// nueva tarea
 
+			setErrorForm(false)
+			values.proyectoId = proyecto.id
+			values.estado = false
+			values.id = uuidv4()
+			agregarTarea(values)
+		}
+
+		// obtener tareas
+		obtenerTareas(proyecto.id)
 		// reset
 		reset()
 	}
@@ -54,7 +81,7 @@ export const FormTarea = () => {
 				<div className='contenedor-input'>
 					<input
 						type='submit'
-						value='Guardar Tarea'
+						value={tareaSeleccionada ? 'Editar Tarea' : 'Guardar Tarea'}
 						className='btn btn-submit btn-block'
 					/>
 				</div>
