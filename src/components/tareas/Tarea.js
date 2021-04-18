@@ -4,7 +4,12 @@ import { TareaContext } from '../../context/tareas/TareaContext'
 
 export const Tarea = ({ tarea }) => {
 	const tareaState = useContext(TareaContext)
-	const { eliminarTarea, obtenerTareas, cambiarEstadoTarea } = tareaState
+	const {
+		eliminarTarea,
+		obtenerTareas,
+		cambiarEstadoTarea,
+		guardarTareaActual,
+	} = tareaState
 	const proyectoState = useContext(proyectoContext)
 	const { proyecto } = proyectoState
 
@@ -47,7 +52,11 @@ export const Tarea = ({ tarea }) => {
 			</div>
 
 			<div className='acciones'>
-				<button type='button' className='btn btn-primario'>
+				<button
+					type='button'
+					className='btn btn-primario'
+					onClick={() => guardarTareaActual(tarea)}
+				>
 					Editar
 				</button>
 				<button

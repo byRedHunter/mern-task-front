@@ -4,6 +4,7 @@ import {
 	ELIMINAR_TAREA,
 	ESTADO_TAREA,
 	TAREAS_PROYECTO,
+	TAREA_ACTUAL,
 } from '../../types'
 import { TareaContext } from './TareaContext'
 import { tareaReducer } from './tareaReaducer'
@@ -31,6 +32,7 @@ export const TareaState = ({ children }) => {
 			},
 		],
 		tareasProyecto: null,
+		tareaSeleccionada: null,
 	}
 
 	// crear dispatch y state
@@ -70,15 +72,25 @@ export const TareaState = ({ children }) => {
 		})
 	}
 
+	// seleccionar tarea actual a editar
+	const guardarTareaActual = (tarea) => {
+		dispatch({
+			type: TAREA_ACTUAL,
+			payload: tarea,
+		})
+	}
+
 	return (
 		<TareaContext.Provider
 			value={{
 				tareas: state.tareas,
 				tareasProyecto: state.tareasProyecto,
+				tareaSeleccionada: state.tareaSeleccionada,
 				obtenerTareas,
 				agregarTarea,
 				eliminarTarea,
 				cambiarEstadoTarea,
+				guardarTareaActual,
 			}}
 		>
 			{children}
