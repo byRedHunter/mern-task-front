@@ -4,7 +4,7 @@ import { TareaContext } from '../../context/tareas/TareaContext'
 
 export const Tarea = ({ tarea }) => {
 	const tareaState = useContext(TareaContext)
-	const { eliminarTarea, obtenerTareas } = tareaState
+	const { eliminarTarea, obtenerTareas, cambiarEstadoTarea } = tareaState
 	const proyectoState = useContext(proyectoContext)
 	const { proyecto } = proyectoState
 
@@ -13,17 +13,34 @@ export const Tarea = ({ tarea }) => {
 		obtenerTareas(proyecto.id)
 	}
 
+	const cambiarEstado = (tarea) => {
+		if (tarea.estado) {
+			tarea.estado = false
+		} else {
+			tarea.estado = true
+		}
+		cambiarEstadoTarea(tarea)
+	}
+
 	return (
 		<li className='tarea sombra animate__animated animate__backInRight'>
 			<p> {tarea.nombre} </p>
 
 			<div className='estado'>
 				{tarea.estado ? (
-					<button type='button' className='completo'>
+					<button
+						type='button'
+						className='completo'
+						onClick={() => cambiarEstado(tarea)}
+					>
 						Completo
 					</button>
 				) : (
-					<button type='button' className='incompleto'>
+					<button
+						type='button'
+						className='incompleto'
+						onClick={() => cambiarEstado(tarea)}
+					>
 						Incompleto
 					</button>
 				)}
