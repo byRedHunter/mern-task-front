@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { alertaContext } from '../../context/alertas/alertaContext'
+import { authContext } from '../../context/autenticacion/authContext'
 
 import { useForm } from '../../hooks/useForm'
 
@@ -8,6 +9,10 @@ export const NuevaCuenta = () => {
 	// context alerta
 	const alertaState = useContext(alertaContext)
 	const { alerta, mostrarAlerta } = alertaState
+
+	// context auth
+	const authState = useContext(authContext)
+	const { registrarUsuario } = authState
 
 	const { values, handleInputChange } = useForm({
 		nombre: '',
@@ -47,6 +52,7 @@ export const NuevaCuenta = () => {
 		}
 
 		// pasarlo al action
+		registrarUsuario({ nombre, email, password })
 	}
 
 	return (
