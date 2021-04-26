@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { alertaContext } from '../../context/alertas/alertaContext'
 
 import { useForm } from '../../hooks/useForm'
 
 export const NuevaCuenta = () => {
+	// context alerta
+	const alertaState = useContext(alertaContext)
+	const { alerta, mostrarAlerta } = alertaState
+
 	const { values, handleInputChange } = useForm({
 		nombre: '',
 		email: '',
@@ -16,6 +21,14 @@ export const NuevaCuenta = () => {
 		e.preventDefault()
 
 		// validar que no haya campos vacios
+		if (
+			nombre.trim() === '' ||
+			email.trim() === '' ||
+			password.trim() === '' ||
+			confirmar.trim() === ''
+		) {
+			mostrarAlerta('Todos los campos son obligatorios', 'alerta-error')
+		}
 
 		// password minimo de 6 caracteres
 
@@ -26,6 +39,9 @@ export const NuevaCuenta = () => {
 
 	return (
 		<div className='form-usuario'>
+			{alerta && (
+				<div className={`alerta ${alerta.categoria}`}>{alerta.msg}</div>
+			)}
 			<div className='contenedor-form sombra-dark'>
 				<h1>Crea una cuenta</h1>
 
