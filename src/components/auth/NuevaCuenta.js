@@ -1,18 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { alertaContext } from '../../context/alertas/alertaContext'
 import { authContext } from '../../context/autenticacion/authContext'
 
 import { useForm } from '../../hooks/useForm'
 
-export const NuevaCuenta = () => {
+export const NuevaCuenta = (props) => {
 	// context alerta
 	const alertaState = useContext(alertaContext)
 	const { alerta, mostrarAlerta } = alertaState
 
 	// context auth
 	const authState = useContext(authContext)
-	const { registrarUsuario } = authState
+	const { mensaje, autenticado, registrarUsuario } = authState
+
+	// en caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
+	useEffect(() => {
+		if (autenticado) props.history.push('/proyectos')
+
+		if (mensaje) mostrarAlerta(mensaje.msg, 'alerta-error')
+		// eslint-disable-next-line
+	}, [mensaje, autenticado])
 
 	const { values, handleInputChange } = useForm({
 		nombre: '',
