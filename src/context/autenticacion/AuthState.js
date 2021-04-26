@@ -3,6 +3,7 @@ import { clienteAxios } from '../../config/axios'
 import { tokenAuth } from '../../config/tokenAuth'
 import {
 	LOGIN_ERROR,
+	LOGIN_EXITOSO,
 	OBTENER_USUARIO,
 	REGISTRO_ERROR,
 	REGISTRO_EXITOSO,
@@ -68,6 +69,32 @@ export const AuthState = ({ children }) => {
 		}
 	}
 
+	// cuando inicia sesion
+	const iniciarSession = async (datos) => {
+		try {
+			const respuesta = await clienteAxios.post('/api/auth', datos)
+			console.log(respuesta)
+			dispatch({
+				type: LOGIN_EXITOSO,
+				payload: respuesta.data,
+			})
+
+			// ontener usuario
+			usuarioAutenticado()
+		} catch (error) {
+			console.log(error.response)
+			const alerta = {
+				msg: error.response.data.msg || error.response.data.errores[0].msg,
+				categoria: 'alerta-error',
+			}
+
+			dispatch({
+				type: LOGIN_ERROR,
+				payload: alerta,
+			})
+		}
+	}
+
 	return (
 		<authContext.Provider
 			value={{
@@ -76,6 +103,7 @@ export const AuthState = ({ children }) => {
 				usuario: state.usuario,
 				mensaje: state.mensaje,
 				registrarUsuario,
+				iniciarSession,
 			}}
 		>
 			{children}

@@ -5,7 +5,7 @@ import { authContext } from '../../context/autenticacion/authContext'
 
 import { useForm } from '../../hooks/useForm'
 
-export const NuevaCuenta = (props) => {
+export const NuevaCuenta = ({ history }) => {
 	// context alerta
 	const alertaState = useContext(alertaContext)
 	const { alerta, mostrarAlerta } = alertaState
@@ -16,11 +16,11 @@ export const NuevaCuenta = (props) => {
 
 	// en caso de que el usuario se haya autenticado o registrado o sea un registro duplicado
 	useEffect(() => {
-		if (autenticado) props.history.push('/proyectos')
+		if (autenticado) history.push('/proyectos')
 
 		if (mensaje) mostrarAlerta(mensaje.msg, 'alerta-error')
 		// eslint-disable-next-line
-	}, [mensaje, autenticado])
+	}, [mensaje, autenticado, history])
 
 	const { values, handleInputChange } = useForm({
 		nombre: '',

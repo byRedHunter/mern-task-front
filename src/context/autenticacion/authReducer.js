@@ -1,5 +1,6 @@
 import {
 	LOGIN_ERROR,
+	LOGIN_EXITOSO,
 	OBTENER_USUARIO,
 	REGISTRO_ERROR,
 	REGISTRO_EXITOSO,
@@ -7,10 +8,12 @@ import {
 
 export const authReducer = (state, action) => {
 	switch (action.type) {
+		case LOGIN_EXITOSO:
 		case REGISTRO_EXITOSO:
 			sessionStorage.setItem('token', action.payload.token)
 			return {
 				...state,
+				token: action.payload.token,
 				autenticado: true,
 				mensaje: null,
 			}
