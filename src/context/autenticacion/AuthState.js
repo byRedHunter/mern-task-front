@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import { useHistory } from 'react-router-dom'
 import { clienteAxios } from '../../config/axios'
 import { tokenAuth } from '../../config/tokenAuth'
 import {
@@ -22,6 +23,8 @@ export const AuthState = ({ children }) => {
 	}
 
 	const [state, dispatch] = useReducer(authReducer, initialState)
+
+	const router = useHistory()
 
 	// funciones
 
@@ -68,6 +71,7 @@ export const AuthState = ({ children }) => {
 			dispatch({
 				type: LOGIN_ERROR,
 			})
+			router.push('/')
 		}
 	}
 

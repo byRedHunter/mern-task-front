@@ -7,8 +7,8 @@ export const Tarea = ({ tarea }) => {
 	const {
 		eliminarTarea,
 		obtenerTareas,
-		cambiarEstadoTarea,
 		guardarTareaActual,
+		actualizarTarea,
 	} = tareaState
 	const proyectoState = useContext(proyectoContext)
 	const { proyecto } = proyectoState
@@ -24,7 +24,7 @@ export const Tarea = ({ tarea }) => {
 		} else {
 			tarea.estado = true
 		}
-		cambiarEstadoTarea(tarea)
+		actualizarTarea(tarea)
 	}
 
 	return (

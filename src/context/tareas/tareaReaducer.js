@@ -2,7 +2,6 @@ import {
 	ACTUALIZAR_TAREA,
 	AGREGAR_TAREA,
 	ELIMINAR_TAREA,
-	ESTADO_TAREA,
 	LIMPIAR_TAREA,
 	TAREAS_PROYECTO,
 	TAREA_ACTUAL,
@@ -31,7 +30,6 @@ export const tareaReducer = (state, action) => {
 			}
 
 		case ACTUALIZAR_TAREA:
-		case ESTADO_TAREA:
 			return {
 				...state,
 				tareasProyecto: state.tareasProyecto.map((tarea) =>
