@@ -13,9 +13,7 @@ export const tareaReducer = (state, action) => {
 		case TAREAS_PROYECTO:
 			return {
 				...state,
-				tareasProyecto: state.tareasProyecto.filter(
-					(tarea) => tarea.proyecto === action.payload
-				),
+				tareasProyecto: action.payload,
 			}
 
 		case AGREGAR_TAREA:
