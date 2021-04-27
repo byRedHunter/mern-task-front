@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import { clienteAxios } from '../../config/axios'
 import {
 	ACTUALIZAR_TAREA,
 	AGREGAR_TAREA,
@@ -13,27 +14,7 @@ import { tareaReducer } from './tareaReaducer'
 
 export const TareaState = ({ children }) => {
 	const initialState = {
-		tareas: [
-			{
-				id: '96er4d524fssd',
-				nombre: 'Elegir plataforma',
-				estado: true,
-				proyectoId: '964s8f5zghkl',
-			},
-			{
-				id: '96er6sfg54fssd',
-				nombre: 'Elegir colores',
-				estado: false,
-				proyectoId: '964s8f5zghkl',
-			},
-			{
-				id: 'sdg96d524fssd',
-				nombre: 'Elegir hosting',
-				estado: true,
-				proyectoId: '96460sgdghkl',
-			},
-		],
-		tareasProyecto: null,
+		tareasProyecto: [],
 		tareaSeleccionada: null,
 	}
 
@@ -51,11 +32,17 @@ export const TareaState = ({ children }) => {
 	}
 
 	// agregar una tarea al proyecto seleccionado
-	const agregarTarea = (tarea) => {
-		dispatch({
-			type: AGREGAR_TAREA,
-			payload: tarea,
-		})
+	const agregarTarea = async (tarea) => {
+		console.log(tarea)
+		try {
+			const resultado = await clienteAxios.post('/api/tareas', tarea)
+			dispatch({
+				type: AGREGAR_TAREA,
+				payload: resultado.data,
+			})
+		} catch (error) {
+			console.log(error.response)
+		}
 	}
 
 	// eliminar na tarea
@@ -100,7 +87,6 @@ export const TareaState = ({ children }) => {
 	return (
 		<TareaContext.Provider
 			value={{
-				tareas: state.tareas,
 				tareasProyecto: state.tareasProyecto,
 				tareaSeleccionada: state.tareaSeleccionada,
 				obtenerTareas,

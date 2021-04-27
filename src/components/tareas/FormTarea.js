@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { proyectoContext } from '../../context/proyectos/proyectoContext'
 import { TareaContext } from '../../context/tareas/TareaContext'
 import { useForm } from '../../hooks/useForm'
@@ -52,14 +51,13 @@ export const FormTarea = () => {
 			// nueva tarea
 
 			setErrorForm(false)
-			values.proyectoId = proyecto.id
-			values.estado = false
-			values.id = uuidv4()
+			values.proyecto = proyecto._id
 			agregarTarea(values)
 		}
 
 		// obtener tareas
-		obtenerTareas(proyecto.id)
+		obtenerTareas(proyecto._id)
+
 		// reset
 		reset()
 	}

@@ -13,29 +13,31 @@ export const tareaReducer = (state, action) => {
 		case TAREAS_PROYECTO:
 			return {
 				...state,
-				tareasProyecto: state.tareas.filter(
-					(tarea) => tarea.proyectoId === action.payload
+				tareasProyecto: state.tareasProyecto.filter(
+					(tarea) => tarea.proyecto === action.payload
 				),
 			}
 
 		case AGREGAR_TAREA:
 			return {
 				...state,
-				tareas: [action.payload, ...state.tareas],
+				tareasProyecto: [action.payload, ...state.tareasProyecto],
 			}
 
 		case ELIMINAR_TAREA:
 			return {
 				...state,
-				tareas: state.tareas.filter((tarea) => tarea.id !== action.payload),
+				tareasProyecto: state.tareasProyecto.filter(
+					(tarea) => tarea._id !== action.payload
+				),
 			}
 
 		case ACTUALIZAR_TAREA:
 		case ESTADO_TAREA:
 			return {
 				...state,
-				tareas: state.tareas.map((tarea) =>
-					tarea.id === action.payload.id ? action.payload : tarea
+				tareasProyecto: state.tareasProyecto.map((tarea) =>
+					tarea._id === action.payload._id ? action.payload : tarea
 				),
 			}
 
