@@ -30,6 +30,7 @@ export const authReducer = (state, action) => {
 		case OBTENER_USUARIO:
 			return {
 				...state,
+				autenticado: true,
 				usuario: action.payload,
 			}
 

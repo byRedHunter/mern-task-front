@@ -104,6 +104,7 @@ export const AuthState = ({ children }) => {
 				mensaje: state.mensaje,
 				registrarUsuario,
 				iniciarSession,
+				usuarioAutenticado,
 			}}
 		>
 			{children}

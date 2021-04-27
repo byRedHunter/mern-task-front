@@ -3,10 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Login } from './components/auth/Login'
 import { NuevaCuenta } from './components/auth/NuevaCuenta'
 import { Proyectos } from './components/proyectos/Proyectos'
+import { tokenAuth } from './config/tokenAuth'
 import { AlertaState } from './context/alertas/AlertaState'
 import { AuthState } from './context/autenticacion/AuthState'
 import { ProyectoState } from './context/proyectos/ProyectoState'
 import { TareaState } from './context/tareas/TareaState'
+
+// revisar si tenemos un token
+const token = sessionStorage.getItem('token')
+if (token) tokenAuth(token)
 
 function App() {
 	return (
