@@ -9,6 +9,7 @@ import {
 	OBTENER_PROYECTOS,
 	PROYECTO_ACTUAL,
 	PROYECTO_ERROR,
+	RESETEAR_PROYECTO,
 	VALIDAR_FORMULARIO,
 } from '../../types'
 import { proyectoContext } from './proyectoContext'
@@ -112,6 +113,13 @@ export const ProyectoState = (props) => {
 		}
 	}
 
+	// limpiear tarea seleccionada al cerrar sesion
+	const resetearProyecto = () => {
+		dispatch({
+			type: RESETEAR_PROYECTO,
+		})
+	}
+
 	return (
 		<proyectoContext.Provider
 			value={{
@@ -126,6 +134,7 @@ export const ProyectoState = (props) => {
 				mostrarError,
 				proyectoActual,
 				eliminarProyecto,
+				resetearProyecto,
 			}}
 		>
 			{props.children}

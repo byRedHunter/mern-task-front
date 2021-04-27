@@ -7,6 +7,7 @@ import {
 	LIMPIAR_TAREA,
 	TAREAS_PROYECTO,
 	TAREA_ACTUAL,
+	RESETEAR_TAREA,
 } from '../../types'
 import { TareaContext } from './TareaContext'
 import { tareaReducer } from './tareaReaducer'
@@ -99,6 +100,13 @@ export const TareaState = ({ children }) => {
 		})
 	}
 
+	// limpiar tareas al cerrar sesion
+	const resetearTareas = () => {
+		dispatch({
+			type: RESETEAR_TAREA,
+		})
+	}
+
 	return (
 		<TareaContext.Provider
 			value={{
@@ -110,6 +118,7 @@ export const TareaState = ({ children }) => {
 				guardarTareaActual,
 				actualizarTarea,
 				limpiarTarea,
+				resetearTareas,
 			}}
 		>
 			{children}

@@ -3,6 +3,7 @@ import {
 	AGREGAR_TAREA,
 	ELIMINAR_TAREA,
 	LIMPIAR_TAREA,
+	RESETEAR_PROYECTO,
 	TAREAS_PROYECTO,
 	TAREA_ACTUAL,
 } from '../../types'
@@ -47,6 +48,12 @@ export const tareaReducer = (state, action) => {
 			return {
 				...state,
 				tareaSeleccionada: null,
+			}
+
+		case RESETEAR_PROYECTO:
+			return {
+				...state,
+				tareasProyecto: [],
 			}
 
 		default:
