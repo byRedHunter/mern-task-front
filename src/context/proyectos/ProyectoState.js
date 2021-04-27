@@ -8,6 +8,7 @@ import {
 	FORMULARIO_PROYECTO,
 	OBTENER_PROYECTOS,
 	PROYECTO_ACTUAL,
+	PROYECTO_ERROR,
 	VALIDAR_FORMULARIO,
 } from '../../types'
 import { proyectoContext } from './proyectoContext'
@@ -19,6 +20,7 @@ export const ProyectoState = (props) => {
 		proyectos: [],
 		errorFormulario: false,
 		proyecto: null,
+		mensaje: null,
 	}
 
 	// dispatch para ejecutar las acciones
@@ -40,7 +42,15 @@ export const ProyectoState = (props) => {
 				payload: resultado.data,
 			})
 		} catch (error) {
-			console.log(error)
+			const alerta = {
+				msg: 'Hubo un error',
+				categoria: 'alerta-error',
+			}
+
+			dispatch({
+				type: PROYECTO_ERROR,
+				payload: alerta,
+			})
 		}
 	}
 
@@ -53,7 +63,15 @@ export const ProyectoState = (props) => {
 				payload: resultado.data,
 			})
 		} catch (error) {
-			console.log(error)
+			const alerta = {
+				msg: 'Hubo un error',
+				categoria: 'alerta-error',
+			}
+
+			dispatch({
+				type: PROYECTO_ERROR,
+				payload: alerta,
+			})
 		}
 	}
 
@@ -82,7 +100,15 @@ export const ProyectoState = (props) => {
 				payload: proyectoId,
 			})
 		} catch (error) {
-			console.log(error)
+			const alerta = {
+				msg: 'Hubo un error',
+				categoria: 'alerta-error',
+			}
+
+			dispatch({
+				type: PROYECTO_ERROR,
+				payload: alerta,
+			})
 		}
 	}
 
@@ -93,6 +119,7 @@ export const ProyectoState = (props) => {
 				formulario: state.formulario,
 				errorFormulario: state.errorFormulario,
 				proyecto: state.proyecto,
+				mensaje: state.mensaje,
 				mostrarFormulario,
 				obtenerProyectos,
 				agregarProyecto,
