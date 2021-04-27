@@ -14,17 +14,6 @@ import { proyectoContext } from './proyectoContext'
 import { proyectoReducer } from './proyectoReducer'
 
 export const ProyectoState = (props) => {
-	const proyectos = [
-		{
-			id: '964s8f5zghkl',
-			nombre: 'Tieda Virtual',
-		},
-		{
-			id: '96460sgdghkl',
-			nombre: 'Diseño sitio web',
-		},
-	]
-
 	const initialState = {
 		formulario: false,
 		proyectos: [],
@@ -42,11 +31,17 @@ export const ProyectoState = (props) => {
 		})
 	}
 
-	const obtenerProyectos = () => {
-		dispatch({
-			type: OBTENER_PROYECTOS,
-			payload: proyectos,
-		})
+	const obtenerProyectos = async () => {
+		try {
+			const resultado = await clienteAxios.get('/api/proyectos')
+
+			dispatch({
+				type: OBTENER_PROYECTOS,
+				payload: resultado.data,
+			})
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	const agregarProyecto = async (proyecto) => {
