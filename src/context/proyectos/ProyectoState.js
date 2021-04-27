@@ -1,7 +1,7 @@
 // 3 -> creamos el state para consumir context y el reducer
 
 import React, { useReducer } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+import { clienteAxios } from '../../config/axios'
 import {
 	AGREGAR_PROYECTO,
 	ELIMINAR_PROYECTO,
@@ -49,13 +49,17 @@ export const ProyectoState = (props) => {
 		})
 	}
 
-	const agregarProyecto = (proyecto) => {
-		proyecto.id = uuidv4()
+	const agregarProyecto = async (proyecto) => {
+		try {
+			const resultado = await clienteAxios.post('/api/proyectos', proyecto)
 
-		dispatch({
-			type: AGREGAR_PROYECTO,
-			payload: proyecto,
-		})
+			dispatch({
+				type: AGREGAR_PROYECTO,
+				payload: resultado.data,
+			})
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	// validar formulario por errores
