@@ -3,7 +3,7 @@ import { authContext } from '../../context/autenticacion/authContext'
 
 export const Barra = () => {
 	const authState = useContext(authContext)
-	const { usuario, usuarioAutenticado, cerrarSesion } = authState
+	const { usuario, cerrarSesion } = authState
 
 	return (
 		<header className='app-header'>

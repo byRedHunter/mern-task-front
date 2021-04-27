@@ -17,6 +17,7 @@ export const authReducer = (state, action) => {
 				token: action.payload.token,
 				autenticado: true,
 				mensaje: null,
+				cargando: false,
 			}
 
 		case CERRAR_SESION:
@@ -29,6 +30,7 @@ export const authReducer = (state, action) => {
 				autenticado: null,
 				token: null,
 				mensaje: action.payload,
+				cargando: false,
 			}
 
 		case OBTENER_USUARIO:
@@ -36,6 +38,7 @@ export const authReducer = (state, action) => {
 				...state,
 				autenticado: true,
 				usuario: action.payload,
+				cargando: false,
 			}
 
 		default:
