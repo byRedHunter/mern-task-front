@@ -43,7 +43,7 @@ export const ProyectoState = (props) => {
 			})
 		} catch (error) {
 			const alerta = {
-				msg: 'Hubo un error',
+				msg: error.response.data || 'Hubo un error',
 				categoria: 'alerta-error',
 			}
 
@@ -64,7 +64,7 @@ export const ProyectoState = (props) => {
 			})
 		} catch (error) {
 			const alerta = {
-				msg: 'Hubo un error',
+				msg: error.response.data || 'Hubo un error',
 				categoria: 'alerta-error',
 			}
 
@@ -93,7 +93,7 @@ export const ProyectoState = (props) => {
 	// elimina un proyecto
 	const eliminarProyecto = async (proyectoId) => {
 		try {
-			await clienteAxios.delete(`/api/proyectos/${proyectoId}`)
+			await clienteAxios.delete(`/api/proyectos/7`)
 
 			dispatch({
 				type: ELIMINAR_PROYECTO,
@@ -101,7 +101,7 @@ export const ProyectoState = (props) => {
 			})
 		} catch (error) {
 			const alerta = {
-				msg: 'Hubo un error',
+				msg: error.response.data || 'Hubo un error',
 				categoria: 'alerta-error',
 			}
 
