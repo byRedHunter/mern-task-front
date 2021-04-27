@@ -129,6 +129,7 @@ a {
 	padding: 0;
 	display: block;
 	background-color: transparent;
+	color: var(--blanco);
 }
 .btn-eliminar {
 	background-color: var(--blanco);

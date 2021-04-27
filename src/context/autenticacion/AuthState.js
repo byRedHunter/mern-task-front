@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import { clienteAxios } from '../../config/axios'
 import { tokenAuth } from '../../config/tokenAuth'
 import {
+	CERRAR_SESION,
 	LOGIN_ERROR,
 	LOGIN_EXITOSO,
 	OBTENER_USUARIO,
@@ -95,6 +96,13 @@ export const AuthState = ({ children }) => {
 		}
 	}
 
+	// cierra sesion del usurio
+	const cerrarSesion = () => {
+		dispatch({
+			type: CERRAR_SESION,
+		})
+	}
+
 	return (
 		<authContext.Provider
 			value={{
@@ -105,6 +113,7 @@ export const AuthState = ({ children }) => {
 				registrarUsuario,
 				iniciarSession,
 				usuarioAutenticado,
+				cerrarSesion,
 			}}
 		>
 			{children}

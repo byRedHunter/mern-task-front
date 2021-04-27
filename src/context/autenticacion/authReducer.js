@@ -1,4 +1,5 @@
 import {
+	CERRAR_SESION,
 	LOGIN_ERROR,
 	LOGIN_EXITOSO,
 	OBTENER_USUARIO,
@@ -18,11 +19,14 @@ export const authReducer = (state, action) => {
 				mensaje: null,
 			}
 
+		case CERRAR_SESION:
 		case LOGIN_ERROR:
 		case REGISTRO_ERROR:
 			sessionStorage.removeItem('token')
 			return {
 				...state,
+				usuario: null,
+				autenticado: null,
 				token: null,
 				mensaje: action.payload,
 			}
