@@ -11,7 +11,7 @@ export const Proyecto = ({ proyecto }) => {
 	// funcion para agregar el proyecto acutal y obtener sus tareas
 	const seleccionarProyecto = () => {
 		proyectoActual(proyecto) // fijar proyecto actual
-		obtenerTareas(proyecto.id) // obtener las tareas del proyecto
+		obtenerTareas(proyecto._id) // obtener las tareas del proyecto
 	}
 
 	return (

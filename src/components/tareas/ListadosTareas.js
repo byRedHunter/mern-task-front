@@ -22,14 +22,14 @@ export const ListadosTareas = () => {
 				{tareasProyecto.length === 0 ? (
 					<li className='tarea'>No hay tareas</li>
 				) : (
-					tareasProyecto.map((tarea) => <Tarea key={tarea.id} tarea={tarea} />)
+					tareasProyecto.map((tarea) => <Tarea key={tarea._id} tarea={tarea} />)
 				)}
 			</ul>
 
 			<button
 				type='button'
 				className='btn btn-eliminar'
-				onClick={() => eliminarProyecto(proyecto.id)}
+				onClick={() => eliminarProyecto(proyecto._id)}
 			>
 				Eliminar Proyecto &times;
 			</button>
