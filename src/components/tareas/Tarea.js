@@ -14,8 +14,8 @@ export const Tarea = ({ tarea }) => {
 	const { proyecto } = proyectoState
 
 	const handleEliminar = () => {
-		eliminarTarea(tarea.id)
-		obtenerTareas(proyecto.id)
+		eliminarTarea(tarea._id, proyecto)
+		obtenerTareas(proyecto._id)
 	}
 
 	const cambiarEstado = (tarea) => {
